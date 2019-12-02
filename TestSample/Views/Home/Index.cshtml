@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Grid";
+}
+
+
+    <div id="Grid">
+    </div>
+
+<script type="text/javascript">
+    $(function () {
+        var data = new ej.data.DataManager({
+            url: '/api/Orders',
+            adaptor: new ej.data.WebApiAdaptor(),
+            crossDomain: true
+        });
+
+        var grid = new ej.grids.Grid({
+            dataSource: data,
+            allowPaging: true,
+            pageSettings: { pageSize: 15 },
+            columns: [
+                { field: 'OrderID', headerText: 'Order ID', textAlign: 'Right', width: 120, isPrimaryKey: true },
+                { field: 'EmployeeID', width: 140, headerText: 'Employee ID' },
+                { field: 'ShipCity', headerText: 'Ship City', width: 120 },
+                { field: 'ShipCountry', headerText: 'Ship Country', width: 140 }
+            ]
+        });
+
+        grid.appendTo('#Grid');
+    });
+</script>
